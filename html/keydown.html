@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>keydown</title>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                    <h1>Hello world</h1>
+            </div>
+            <div class="body">
+                <button>function1</button>
+                <button>function2</button>
+                <button>function3</button>
+                <button>function4</button>
+                        
+                <input type="text" name="pasetTest" id="testPaste"/>
+                <table id="testTable">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Savings</th>
+                            <th>test1</th>
+                            <th>test2</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name=""/></td>
+                            <td><input type="text" name=""/></td>
+                            <td><input type="text" name=""/></td>
+                            <td><input type="text" name=""/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+        'use strict'
+        window.onload= function(){
+                console.log('loading compleated!');
+                console.log(this);
+                
+                excelPaste('testTable');
+                
+                function excelPaste(tableId){
+                    var getTags = document.getElementsByTagName('input');
+                    for(var i=0,len=getTags.length; i < len; i++){
+                        var pTableNodeId = getTags[i].parentElement.parentElement.parentElement.parentElement.getAttribute('id');
+                        if(pTableNodeId === tableId){
+                            getTags[i].addEventListener('keydown', function(evt){
+                                var clipboardData, pastedData;
+                                if(evt.ctrlKey== true && evt.code === 'KeyV'){
+                                    var self = this;
+                                    self.addEventListener('paste', function(e){
+                                        clipboardData= e.clipboardData || window.clipboardData;
+                                        var twoDArray= [];
+                                        pastedData= clipboardData.getData('Text');
+                                        var cvtArray = pastedData.split('\n');
+                                        
+                                        for(var i=0,len=cvtArray.length -1; i < len; i++){
+                                            var tempArray= cvtArray[i].split('\t');
+                                            console.log(tempArray);
+                                            twoDArray.push(tempArray);
+                                        }
+                                        console.log(twoDArray);
+                                        var tableNode = document.getElementById(tableId);
+                                        
+                                        for(var j=0,len=twoDArray.length; j < len; j++){
+                                            console.log(twoDArray[j]);
+                                            var node = createTableValueNode(twoDArray[j]);
+                                            tableNode.appendChild(node);
+                                        }  
+                                    });
+                                }
+                            });    
+                        }
+                    }
+                }
+                
+                function createTableValueNode(arrs){
+                    var trNode = document.createElement('tr');
+                    for(var i=0, len=arrs.length; i < len; i++){
+                        var tdNode = document.createElement('td');
+                        var inputTag = document.createElement('input');
+                        inputTag.setAttribute('type', 'text');
+                        inputTag.value = arrs[i];
+                        tdNode.appendChild(inputTag);
+                        trNode.appendChild(tdNode);
+                    }
+                    return trNode;
+                }
+                
+            }
+        </script>
+    </body>
+</html>

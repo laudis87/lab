@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> </title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var root = 'https://jsonplaceholder.typicode.com';
+
+        $(window).load(function() {
+            $('.doClick').on('click', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: root + '/comments/',
+                    method: 'GET'
+                }).then(function(data) {
+                    console.log(data);
+                });
+                
+                
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <button class="doClick">click</button>
+</body>
+
+</html>

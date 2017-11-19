@@ -1,0 +1,84 @@
+/*Tab 관련 CSS 2017-10-05 작성*/
+
+.slider {
+        overflow: hidden;
+        width: 500px;
+}
+
+.contents {
+        position: relative;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+}
+
+.contents {
+        font-size: 0rem;
+        white-space: nowrap;
+}
+
+.contents .item {
+        display: inline-block;
+        font-size: 1rem;
+}
+
+.item {
+        width: 100%;
+}
+
+.item_inner {
+        padding: 1rem;
+}
+
+/*Typing관련 CSS 2017-10-05 작성*/
+.typing_warpper {
+        background: #333;
+        padding-top: 5em;
+        display: flex;
+        justify-content: center;
+}
+
+.typing_warpper .typing_contents h1 {
+        color: #f4b12c;
+        font-size : 4.5rem;
+        /* 글자 Border 그림자를 응용하는 방법 */
+        text-shadow: -1.5px 0 #fff, 0 1.5px #fff, 1.5px 0 #fff, 0 -1.5px #fff;
+        font-family: monospace;
+        overflow: hidden;
+        /* Ensures the content is not revealed until the animation */
+        border-right: .1rem solid orange;
+        /* The typwriter cursor */
+        white-space: nowrap;
+        /* Keeps the content on a single line */
+        margin: 0 auto;
+        /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .15em;
+        /* Adjust as needed */
+        animation: typing 0.5s steps(5, end),
+        blink-caret 0.5s step-end infinite;
+        -webkit-animation-fill-mode:both;
+}
+
+/* 타이핑 구간 */
+@keyframes typing {
+        from {
+                width: 0%
+        }
+        to {
+                width: 100%
+        }
+}
+
+
+/* 커서 */
+@keyframes blink-caret {
+        from,
+        to {
+                border-color: transparent
+        }
+        50% {
+                border-color: orange
+        }
+}

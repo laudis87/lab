@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            ul{
+                padding : 0px;
+            }
+            li{
+                color : #1df;
+                text-decoration : underline;
+                list-style-type : none;
+                padding : 0px;
+            }
+            
+            ui li {
+                color : red;
+                padding : 0px;
+            }
+            
+            ul > li {
+                color : blue;
+            }
+            
+            .custom ul > li {
+                color : black;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul>
+                <li>item1</li>
+                <li>item2</li>
+                <li>item3</li>
+            </ul>
+        </div>
+        <div>
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+        </div>
+        <div class="custom">
+            <ul>
+                <li>test1</li>
+                <li>test2</li>
+                <li>test3</li>
+            </ul>
+        </div>
+    </body>
+</html>
